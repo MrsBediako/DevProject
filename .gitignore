@@ -1,0 +1,8 @@
+.terraform 
+.terraform.lock.hcl
+Ec2.tf
+terraform.tfstate
+terraform.tfstate.backup
+test.tfvars
+variable.tf
+securitygroup.tf
