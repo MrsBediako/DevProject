@@ -1,13 +1,13 @@
-# creating network for Dev project in EU-west-1
+# creating network for Dev project in EU-west-2
 
-resource "aws_vpc" "dev_project" {
+resource "aws_vpc" "dev_project_1" {
   cidr_block           = var.vpc_cidr
   instance_tenancy     = "default"
   enable_dns_hostnames = true
   enable_dns_support   = true
 
   tags = {
-    Name = "dev_project"
+    Name = "dev_project_1"
 
   }
 }
@@ -15,7 +15,7 @@ resource "aws_vpc" "dev_project" {
 # creating public subnet
 
 resource "aws_subnet" "prod_pub_sub1" {
-  vpc_id            = aws_vpc.dev_project.id
+  vpc_id            = aws_vpc.dev_project_1.id
   cidr_block        = var.public_cidr
   availability_zone = var.az1
 
@@ -25,7 +25,7 @@ resource "aws_subnet" "prod_pub_sub1" {
 }
 
 resource "aws_subnet" "prod_pub_sub2" {
-  vpc_id            = aws_vpc.dev_project.id
+  vpc_id            = aws_vpc.dev_project_1.id
   cidr_block        = var.public_2_cidr
   availability_zone = var.az2
 
@@ -35,7 +35,7 @@ resource "aws_subnet" "prod_pub_sub2" {
 }
 
 resource "aws_subnet" "prod_pub_sub3" {
-  vpc_id            = aws_vpc.dev_project.id
+  vpc_id            = aws_vpc.dev_project_1.id
   cidr_block        = var.public_3_cidr
   availability_zone = var.az2
 
@@ -49,7 +49,7 @@ resource "aws_subnet" "prod_pub_sub3" {
 # creating private subnet
 
 resource "aws_subnet" "prod_priv_sub1" {
-  vpc_id            = aws_vpc.dev_project.id
+  vpc_id            = aws_vpc.dev_project_1.id
   cidr_block        = var.private_cidr
   availability_zone = var.az1
 
@@ -59,7 +59,7 @@ resource "aws_subnet" "prod_priv_sub1" {
 }
 
 resource "aws_subnet" "prod_priv_sub2" {
-  vpc_id            = aws_vpc.dev_project.id
+  vpc_id            = aws_vpc.dev_project_1.id
   cidr_block        = var.private_2_cidr
   availability_zone = var.az2
 
@@ -71,7 +71,7 @@ resource "aws_subnet" "prod_priv_sub2" {
 # creating public route table
 
 resource "aws_route_table" "prod_pub_route_table" {
-  vpc_id = aws_vpc.dev_project.id
+  vpc_id = aws_vpc.dev_project_1.id
 
 
   tags = {
@@ -82,7 +82,7 @@ resource "aws_route_table" "prod_pub_route_table" {
 # creating private route table
 
 resource "aws_route_table" "prod_priv_route_table" {
-  vpc_id = aws_vpc.dev_project.id
+  vpc_id = aws_vpc.dev_project_1.id
 
 
   tags = {
@@ -125,7 +125,7 @@ resource "aws_route_table_association" "private_assoc_2" {
 # internet gateway
 
 resource "aws_internet_gateway" "prod_IGW" {
-  vpc_id = aws_vpc.dev_project.id
+  vpc_id = aws_vpc.dev_project_1.id
 
   tags = {
     Name = "prod_IGW"

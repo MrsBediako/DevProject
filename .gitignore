@@ -5,3 +5,5 @@ terraform.tfstate
 terraform.tfstate.backup
 test.tfvars
 securitygroup.tf
+.terraform.lock.hcl
+README.md
